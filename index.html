@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sanskrit Stop Words · Rupesh Rajak · IIT (ISM) Dhanbad</title>
+<meta name="description" content="A categorised Sanskrit stop-word list for NLP, by Rupesh Rajak, IIT (ISM) Dhanbad.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Jost:wght@300;400;500&family=Tiro+Devanagari+Sanskrit&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbf7ef;--c:#fffdf8;--i:#2b2218;--m:#7a6e5d;--a:#9a6b2f;--b:#1f3a5f;--l:rgba(154,107,47,.28)}
+*{box-sizing:border-box}
+body{margin:0;color:var(--i);font:300 1.06rem/1.85 Jost,sans-serif;background:var(--bg)}
+h1,h2,h3{font-family:'Cormorant Garamond',serif;margin:0;color:var(--b)}a{color:var(--a)}
+nav{position:sticky;top:0;z-index:9;display:flex;gap:1.2rem;padding:.8rem 1.4rem;background:var(--bg);border-bottom:1px solid var(--l);font-size:.74rem;letter-spacing:.13em;text-transform:uppercase;overflow-x:auto;white-space:nowrap}
+nav a{text-decoration:none;color:var(--m)}nav a:hover{color:var(--a)}
+header{text-align:center;padding:5rem 1.5rem 3.5rem;background:linear-gradient(#f3e6c9,var(--bg));border-bottom:1px solid var(--l)}
+header h1{font-size:clamp(2.8rem,8vw,5.6rem);line-height:1.02}.dv{font:1.8rem 'Tiro Devanagari Sanskrit';color:var(--a)}
+.by{color:var(--m);margin:1rem 0 1.4rem}
+.quote{max-width:40rem;margin:0 auto 1.6rem;background:#141a2e;color:#f6dca4;border-radius:16px;padding:1.6rem 1.8rem;font:italic 500 1.35rem/1.5 'Cormorant Garamond'}
+.st{display:flex;gap:2.5rem;justify-content:center}.st b{display:block;font:700 2.6rem 'Cormorant Garamond';color:var(--a);line-height:1}.st small{color:var(--m);letter-spacing:.1em;text-transform:uppercase;font-size:.72rem}
+button,select,input{font:inherit;background:var(--c);color:var(--i);border:1px solid var(--a);border-radius:99px;padding:.4rem 1.1rem;cursor:pointer}
+button:hover{background:var(--a);color:#fff}
+section{max-width:60rem;margin:auto;padding:3.5rem 1.5rem;border-bottom:1px solid var(--l)}section:last-of-type{border:0}
+section h2{font-size:2.5rem;margin-bottom:1rem}section h2:after{content:"";display:block;width:64px;height:3px;margin-top:.4rem;border-radius:3px;background:linear-gradient(90deg,var(--a),var(--b))}
+.card{border:1px solid var(--l);border-radius:14px;padding:1.2rem 1.4rem;background:var(--c)}.card h3{font-size:1.45rem;margin-bottom:.3rem}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem}
+.num{font:700 2rem 'Cormorant Garamond';color:var(--a);line-height:1}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.95rem}th,td{text-align:left;padding:.5rem .7rem;border-bottom:1px solid var(--l)}th{color:var(--b);font-weight:500;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+td.bw{min-width:9rem}.br{height:11px;border-radius:8px}td.ex{color:var(--m);font-style:italic}
+#ws{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}.w{padding:.1rem .75rem;border:1px solid;border-radius:99px;font-size:.9rem;background:var(--c)}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin:.9rem 0}.chips button{font-size:.78rem;padding:.15rem .8rem}.chips .a{background:var(--a);color:#fff}
+.plots{display:grid;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));gap:1.2rem;align-items:center;margin:1.4rem 0}
+img{max-width:100%;border-radius:12px;border:1px solid var(--l)}
+pre{white-space:pre-wrap;background:var(--c);border:1px solid var(--l);border-radius:12px;padding:1rem;font-size:.86rem}
+ol.t{list-style:none;padding:0;border-left:2px solid var(--l);margin-left:.7rem}ol.t li{position:relative;padding:0 0 1rem 1.5rem}ol.t li:before{content:"";position:absolute;left:-7px;top:.6rem;width:12px;height:12px;border-radius:50%;background:var(--a)}
+footer{text-align:center;color:var(--m);font-size:.85rem;padding:2.5rem 1.5rem}
+</style></head><body>
+<nav><a href="#top">Home</a><a href="#abstract">Abstract</a><a href="#objective">Objective</a><a href="#questions">Questions</a><a href="#method">Methodology</a><a href="#list">List</a><a href="#analysis">Analysis</a><a href="#discussion">Discussion</a><a href="#limits">Limitations</a><a href="#future">Future work</a><a href="#refs">References</a><a href="#about">About</a></nav>
+
+<header id="top"><div class="dv">संस्कृत-निरर्थक-शब्दाः</div><h1>Sanskrit<br>Stop Words</h1>
+<div class="by">Indic Language Stop Words for Natural Language Processing<br>Rupesh Rajak · MA Digital Humanities &amp; Social Sciences<br>Indian Institute of Technology (Indian School of Mines) Dhanbad</div>
+<div class="quote">Move the light across the dark to read, as the narrator reads the world: sensitive only to light and darkness.</div>
+<div class="st"><div><b class="n"></b><small>stop words</small></div><div><b class="k"></b><small>categories</small></div><div><b>1</b><small>language</small></div></div></header>
+
+<section id="abstract"><h2>Abstract</h2>
+<p>Stop words are very frequent words that carry little topical meaning, and most text-processing pipelines remove them before analysis. English has several well-known lists, but Sanskrit has few that are open, small and easy to inspect. This project, prepared for the Indic NLP exercise of the Monsoon Semester 2026, presents a hand-compiled list of <b class="n"></b> Sanskrit stop words in simplified Latin transliteration. The words are sorted into <b class="k"></b> grammatical categories and summarised in a table and two charts. Pronouns, demonstratives, quantifiers and adverbs make up most of the list, while categories such as articles and classifiers have no Sanskrit counterpart. The list is offered as a transparent starting point for preprocessing, teaching and later testing on real corpora.</p></section>
+
+<section id="objective"><h2>Objective</h2><div class="two">
+<div class="card"><div class="num">01</div><h3>Compile</h3><p>Build a clean, duplicate-free Sanskrit stop-word list for text preprocessing.</p></div>
+<div class="card"><div class="num">02</div><h3>Structure</h3><p>Save it in <i>Sanskrit_stopwords.py</i>, named after the language and following the prescribed header pattern.</p></div>
+<div class="card"><div class="num">03</div><h3>Categorise</h3><p>Group every word by its grammatical function and show the breakdown.</p></div>
+<div class="card"><div class="num">04</div><h3>Publish</h3><p>Upload the work to GitHub and present it as a web page.</p></div></div></section>
+
+<section id="questions"><h2>Research questions</h2><div class="two">
+<div class="card"><div class="num">RQ1</div><p>Which kinds of words make up most of the Sanskrit stop-word list?</p></div>
+<div class="card"><div class="num">RQ2</div><p>Which word categories used for other languages do not fit Sanskrit?</p></div></div></section>
+
+<section id="method"><h2>Methodology</h2>
+<ol class="t"><li><b>Collect and clean.</b> The 200 words were gathered by hand and checked for duplicates with a script. None were found.</li>
+<li><b>Write the file.</b> The list was saved as <i>Sanskrit_stopwords.py</i>, with the required header: topic, author, short description, semester and affiliation.</li>
+<li><b>Categorise.</b> Each word was placed in one category according to its main grammatical role, for example <i>tat</i> (demonstrative) or <i>ca</i> (conjunction). Words with several roles went under the most common one. The script confirms that no word is missing or counted twice.</li>
+<li><b>Visualise.</b> A Python script counts each category and draws the charts shown below.</li>
+<li><b>Publish.</b> The files were uploaded to GitHub and this page was built for GitHub Pages.</li></ol>
+<p>The transliteration is simplified: long vowels are doubled (<i>aa, ii, uu</i>) and <i>sh</i> stands for both ś and ṣ.</p></section>
+
+<section id="list"><h2>The list</h2>
+<input id="q" placeholder="Search a word…"> <button id="cp">Copy as Python list</button> <a href="Sanskrit_stopwords.py"><button>Download .py</button></a>
+<div class="chips" id="chips"></div><div id="ws"></div>
+<h3 style="margin-top:2rem">File header</h3><pre>"""
+============================================================
+Topic: Indic Language Stop Words for Natural Language Processing
+============================================================
+Author Name(s): Rupesh Rajak
+Semester: Monsoon Semester 2026
+Affiliation: Department of Humanities and Social Sciences, IIT (ISM) Dhanbad
+============================================================
+"""
+# 1. Sanskrit Stop Words
+# Language: Sanskrit
+Sanskrit_stopwords = ["aham", "vayam", "aavaam", ...]</pre></section>
+
+<section id="analysis"><h2>Analysis</h2>
+<p>Every one of the 200 words sits in exactly one category. The table shows how many words each category holds, its share of the list, and a few examples.</p>
+<div class="tw"><table><thead><tr><th>Category</th><th>Words</th><th>Share</th><th></th><th>Examples</th></tr></thead><tbody id="rows"></tbody></table></div>
+<h3 style="margin:2rem 0 .8rem">Three points to note</h3><div class="two" id="pts"></div>
+<div class="plots"><img src="stopword_donut.png" alt="Donut chart of Sanskrit stop words by category"><img src="stopword_categories.png" alt="Bar chart of Sanskrit stop words by category"></div></section>
+
+<section id="discussion"><h2>Discussion</h2>
+<p><b>RQ1.</b> Pronoun-type words make up most of the list. Sanskrit marks relations through case endings, so one idea, such as “that”, appears as many separate entries. Adverbs and particles come next and behave much like function words in other languages.</p>
+<p><b>RQ2.</b> Two categories suggested for other Indic languages do not apply. Sanskrit has no true postpositions, because relations are carried by case endings and preverbs, and it has no classifiers. Both gaps tell us something about how the language works.</p></section>
+
+<section id="limits"><h2>Limitations</h2>
+<p>The list is a curated sample, not a complete inventory. It has not yet been tested on a Sanskrit corpus, so no claim is made about its effect on retrieval or classification. Sandhi, the joining of words in running text, can hide a stop word inside a longer string, and the Latin transliteration loses some distinctions. Stop-word choices also depend on the task, so the list should be adapted and not applied blindly.</p></section>
+
+<section id="future"><h2>Future work</h2><div class="two">
+<div class="card"><h3>Devanagari forms</h3><p>Add the original script beside each transliterated word.</p></div>
+<div class="card"><h3>Corpus testing</h3><p>Measure word frequencies and the effect of removal on a Sanskrit corpus.</p></div>
+<div class="card"><h3>Lemmatisation</h3><p>Reduce inflected forms to base forms and compare list sizes.</p></div>
+<div class="card"><h3>More languages</h3><p>Extend the same method to Hindi and other Indic languages.</p></div></div></section>
+
+<section id="refs"><h2>References</h2>
+<p>Creative Commons (n.d.) <i>Attribution-NonCommercial 4.0 International</i>. Available at: <a href="https://creativecommons.org/licenses/by-nc/4.0/">creativecommons.org/licenses/by-nc/4.0</a>.<br>
+Luhn, H. P. (1958) ‘The automatic creation of literature abstracts’, <i>IBM Journal of Research and Development</i>, 2(2), pp. 159–165.<br>
+Manning, C. D., Raghavan, P. and Schütze, H. (2008) <i>Introduction to Information Retrieval</i>. Cambridge: Cambridge University Press.</p>
+<h3 style="margin-top:1.6rem">Cite this project</h3>
+<select id="fmt"><option>APA 7</option><option>MLA 9</option><option>Chicago (author–date)</option><option>Chicago (notes)</option><option>Harvard</option><option>IEEE</option><option>BibTeX</option></select> <button id="cc">Copy citation</button><pre id="out"></pre></section>
+
+<section id="about"><h2>About</h2><div class="two">
+<div class="card"><h3>Rupesh Rajak</h3><p><b>MA, Digital Humanities &amp; Social Sciences — IIT (ISM) Dhanbad</b></p>
+<p>Rupesh Rajak is currently pursuing an M.A. in Digital Humanities and Social Sciences at the Indian Institute of Technology (Indian School of Mines), Dhanbad (2025–2027). He graduated in History (Honours) from BBMKU. In the summer break of 2026 he spent six weeks on mining-community rehabilitation and CSR-related field activities. He completed a Def-Space winter internship at the Bharat Space Education Research Center (December 2025–26) and participated in a Hands-on Workshop on Artificial Intelligence and Machine Learning.</p>
+<p>Contact: <a href="mailto:25ma0009@iitism.ac.in">25ma0009@iitism.ac.in</a></p></div>
+<div class="card"><h3>Project supervision</h3><p><a href="https://shanmugapriya.com/">Shanmugapriya T.</a><br><a href="https://linktr.ee/sourav.dh.litcult">Sourav Ghosh</a></p><p style="color:var(--m);font-size:.9rem">Monsoon Semester 2026<br>Department of Humanities and Social Sciences</p></div></div></section>
+
+<footer>© 2026 Rupesh Rajak. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0 International</a>.</footer>
+<script src="data.js"></script>
+<script>
+const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s),E=Object.entries(window.DATA).sort((a,b)=>b[1].length-a[1].length),N=E.reduce((a,[,w])=>a+w.length,0),mx=E[0][1].length,col=i=>`hsl(${(i*24+20)%360} 42% ${44+(i%2)*8}%)`,pc=n=>(100*n/N).toFixed(1);
+$$('.n').forEach(e=>e.textContent=N);$$('.k').forEach(e=>e.textContent=E.length);
+// analysis table
+$('#rows').innerHTML=E.map(([k,w],i)=>`<tr><td>${k}</td><td><b>${w.length}</b></td><td>${pc(w.length)}%</td><td class="bw"><div class="br" style="width:${w.length/mx*100}%;background:${col(i)}"></div></td><td class="ex">${w.slice(0,3).join(', ')}</td></tr>`).join('');
+const sum=f=>E.filter(([k])=>f(k)).reduce((a,[,w])=>a+w.length,0),pr=sum(k=>['Personal Pronouns & Possessives','Demonstratives','Relative Pronouns','Interrogatives'].includes(k)),ad=sum(k=>k.startsWith('Adverbs')),sm=E.filter(([,w])=>w.length<=4).map(e=>e[0].toLowerCase());
+$('#pts').innerHTML=[['1','Pronoun-type words lead',`Personal, demonstrative, relative and interrogative words total ${pr} (${pc(pr)}%). Demonstratives alone are the biggest category, with ${E[0][1].length} words.`],['2','Adverbs come next',`Adverbs of place, time and manner total ${ad} (${pc(ad)}%).`],['3','Some classes are tiny',`${sm.join(', ')} have only four words each, because these are small closed classes.`]].map(([n,h,t])=>`<div class="card"><div class="num">${n}</div><h3>${h}</h3><p>${t}</p></div>`).join('');
+// word explorer
+let cat='All';const ch=$('#chips');
+['All',...E.map(e=>e[0])].forEach(c=>{const b=document.createElement('button');b.textContent=c;b.onclick=()=>{cat=c;[...ch.children].forEach(x=>x.classList.toggle('a',x===b));draw()};if(c==='All')b.className='a';ch.appendChild(b)});
+function draw(){const q=$('#q').value.toLowerCase();$('#ws').innerHTML=E.flatMap(([k,w],i)=>w.map(v=>[k,v,i])).filter(([k,v])=>(cat==='All'||k===cat)&&v.includes(q)).map(([k,v,i])=>`<span class="w" title="${k}" style="border-color:${col(i)}">${v}</span>`).join('')}
+$('#q').oninput=draw;draw();
+$('#cp').onclick=e=>{navigator.clipboard.writeText('Sanskrit_stopwords = ['+E.flatMap(([,w])=>w).map(w=>`"${w}"`).join(', ')+']');e.target.textContent='Copied';setTimeout(()=>e.target.textContent='Copy as Python list',1500)};
+// citation machine
+const T='Indic Stop Words for Natural Language Processing: A Sanskrit Stop-Word List',I='Indian Institute of Technology (Indian School of Mines) Dhanbad',U=location.protocol.startsWith('http')?location.href.split('#')[0]:'https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/';
+const d=new Date(),dm=d.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}),ml=d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+const F={'APA 7':`Rajak, R. (2026). <i>${T}</i> [Project website]. ${I}. ${U}`,'MLA 9':`Rajak, Rupesh. <i>${T}</i>. ${I}, 2026, ${U}. Accessed ${ml}.`,'Chicago (author–date)':`Rajak, Rupesh. 2026. “${T}.” Project website. ${I}. ${U}.`,'Chicago (notes)':`Rupesh Rajak, “${T},” project website, ${I}, 2026, ${U}.`,'Harvard':`Rajak, R. (2026) <i>${T}</i>. ${I}. Available at: ${U} (Accessed: ${dm}).`,'IEEE':`R. Rajak, “${T},” ${I}, 2026. [Online]. Available: ${U}`,'BibTeX':`@misc{rajak2026sanskrit,\n  author = {Rajak, Rupesh},\n  title = {${T}},\n  year = {2026},\n  howpublished = {\\url{${U}}},\n  note = {${I}. Licensed under CC BY-NC 4.0}\n}`};
+const sh=()=>$('#out').innerHTML=F[$('#fmt').value];$('#fmt').onchange=sh;sh();
+$('#cc').onclick=e=>{navigator.clipboard.writeText($('#out').innerText);e.target.textContent='Copied';setTimeout(()=>e.target.textContent='Copy citation',1500)};
+</script></body></html>
