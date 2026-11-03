@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sanskrit Stop Words · Rupesh Rajak · IIT (ISM) Dhanbad</title>
+<meta name="description" content="A categorised Sanskrit stop-word list for NLP, by Rupesh Rajak, IIT (ISM) Dhanbad.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Jost:wght@300;400;500&family=Tiro+Devanagari+Sanskrit&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbf7ef;--c:#fffdf8;--i:#2b2218;--m:#7a6e5d;--a:#9a6b2f;--b:#1f3a5f;--l:rgba(154,107,47,.25)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;color:var(--i);font:300 1.06rem/1.85 Jost,sans-serif;background:var(--bg) radial-gradient(circle at 15% 0,#f3e6c9 0,transparent 38%),radial-gradient(circle at 90% 30%,#e3ebf5 0,transparent 30%) fixed}
+h1,h2,h3{font-family:'Cormorant Garamond',serif;margin:0;color:var(--b)}a{color:var(--a)}
+nav{position:fixed;top:0;left:0;right:0;z-index:9;display:flex;gap:1.2rem;padding:.8rem 1.4rem;background:#fbf7efe8;backdrop-filter:blur(8px);border-bottom:1px solid var(--l);font-size:.74rem;letter-spacing:.13em;text-transform:uppercase;overflow-x:auto;white-space:nowrap}
+nav a{text-decoration:none;color:var(--m);transition:.3s}nav a:hover{color:var(--a)}
+#pg{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--a),var(--b));z-index:10}
+#hero{min-height:100vh;display:grid;place-items:center;text-align:center;padding:6rem 1.5rem 3rem;position:relative;overflow:hidden}
+#hero h1{font-size:clamp(2.8rem,8vw,6rem);line-height:1;font-weight:700}.dv{font:1.9rem 'Tiro Devanagari Sanskrit';color:var(--a)}
+.by{color:var(--m);margin:1rem 0}.g{position:absolute;font:3.4rem 'Tiro Devanagari Sanskrit';color:var(--a);opacity:.11;animation:fl 14s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-28px) rotate(6deg)}}
+.night{position:relative;max-width:42rem;margin:1.6rem auto;background:#141a2e;border-radius:20px;padding:2.2rem 1.8rem;overflow:hidden;box-shadow:0 20px 50px #1f3a5f33;touch-action:pan-y}
+.night:before{content:"";position:absolute;inset:0;background:radial-gradient(circle 200px at var(--x,50%) var(--y,50%),rgba(255,205,120,.3),transparent 72%)}
+.night span{position:relative;display:block;color:#f6dca4;font:italic 500 1.4rem/1.5 'Cormorant Garamond';-webkit-mask-image:radial-gradient(circle 150px at var(--x,50%) var(--y,50%),#000 25%,rgba(0,0,0,.06) 100%);mask-image:radial-gradient(circle 150px at var(--x,50%) var(--y,50%),#000 25%,rgba(0,0,0,.06) 100%)}
+.st{display:flex;gap:2.5rem;justify-content:center;margin-top:1.4rem}.st b{display:block;font:700 2.8rem 'Cormorant Garamond';color:var(--a);line-height:1}.st small{color:var(--m);letter-spacing:.1em;text-transform:uppercase;font-size:.72rem}
+button,select,input{font:inherit;background:var(--c);color:var(--i);border:1px solid var(--a);border-radius:99px;padding:.45rem 1.2rem;cursor:pointer;transition:.3s}
+button:hover{background:var(--a);color:#fff}
+section{max-width:62rem;margin:auto;padding:4.5rem 1.5rem}section h2{font-size:2.7rem;margin-bottom:1.2rem}
+section h2:after{content:"";display:block;width:70px;height:3px;margin-top:.4rem;border-radius:3px;background:linear-gradient(90deg,var(--a),var(--b))}
+.rv{opacity:0;transform:translateY(34px);transition:1s cubic-bezier(.2,.8,.2,1)}.rv.on{opacity:1;transform:none}
+.card{border:1px solid var(--l);border-radius:16px;padding:1.3rem 1.5rem;background:var(--c);box-shadow:0 4px 18px #9a6b2f12;transition:.4s}.card:hover{transform:translateY(-5px);box-shadow:0 14px 34px #9a6b2f24;border-color:var(--a)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.1rem}.card h3{font-size:1.5rem;margin-bottom:.3rem}
+.num{font:700 2.2rem 'Cormorant Garamond';color:var(--a);line-height:1}
+.bar{display:grid;grid-template-columns:minmax(130px,17rem) 1fr 2.2rem;gap:.8rem;align-items:center;font-size:.92rem;margin:.4rem 0;transition:.3s}.bar:hover{transform:translateX(6px)}
+.bar i{display:block;height:13px;border-radius:9px;width:0;transition:width 1.7s cubic-bezier(.2,.8,.2,1)}
+#ws{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}.w{padding:.1rem .75rem;border:1px solid;border-radius:99px;font-size:.9rem;background:var(--c);transition:.25s;cursor:default}.w:hover{color:#fff!important;transform:scale(1.12) rotate(-2deg)}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin:.9rem 0}.chips button{font-size:.78rem;padding:.2rem .8rem}.chips .a{background:var(--a);color:#fff}
+.plots{display:grid;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));gap:1.5rem;align-items:center;margin:1.5rem 0}
+#donut{width:100%;max-width:21rem;margin:auto;display:block}#donut circle{transition:stroke-dasharray 1.8s cubic-bezier(.2,.8,.2,1),opacity .3s}
+#leg{display:flex;flex-wrap:wrap;gap:.3rem .9rem;font-size:.82rem;margin-top:.6rem}#leg span{cursor:pointer}#leg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:.35rem}
+img{max-width:100%;border-radius:14px;border:1px solid var(--l);transition:.4s}img:hover{transform:scale(1.02);box-shadow:0 12px 30px #9a6b2f22}
+pre{white-space:pre-wrap;background:var(--c);border:1px solid var(--l);border-radius:14px;padding:1rem;font-size:.86rem}
+ol.t{list-style:none;padding:0;border-left:2px solid var(--l);margin-left:.7rem}ol.t li{position:relative;padding:0 0 1.1rem 1.5rem}ol.t li:before{content:"";position:absolute;left:-7px;top:.6rem;width:12px;height:12px;border-radius:50%;background:var(--a);box-shadow:0 0 0 4px #9a6b2f26}
+footer{text-align:center;color:var(--m);font-size:.85rem;padding:3rem 1.5rem}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.night span{-webkit-mask-image:none;mask-image:none}}
+</style></head><body><div id="pg"></div>
+<nav><a href="#hero">Home</a><a href="#abstract">Abstract</a><a href="#objective">Objective</a><a href="#questions">Questions</a><a href="#method">Methodology</a><a href="#list">List</a><a href="#analysis">Analysis</a><a href="#discussion">Discussion</a><a href="#limits">Limitations</a><a href="#future">Future work</a><a href="#refs">References</a><a href="#about">About</a></nav>
+
+<header id="hero"><div><div class="dv">संस्कृत-निरर्थक-शब्दाः</div><h1>Sanskrit<br>Stop Words</h1>
+<div class="by">Indic Language Stop Words for Natural Language Processing<br>Rupesh Rajak · MA Digital Humanities &amp; Social Sciences<br>Indian Institute of Technology (Indian School of Mines) Dhanbad</div>
+<div class="night" id="night"><span>Move the light across the dark to read, as the narrator reads the world: sensitive only to light and darkness.</span></div>
+<div class="st"><div><b class="cnt n">0</b><small>stop words</small></div><div><b class="cnt k">0</b><small>categories</small></div><div><b>1</b><small>language</small></div></div></div></header>
+
+<section id="abstract" class="rv"><h2>Abstract</h2>
+<p>Stop words are very frequent words that carry little topical meaning, and most text-processing pipelines remove them before analysis. English has several well-known lists, but Sanskrit has few that are open, small and easy to inspect. This project, prepared for the Indic NLP exercise of the Monsoon Semester 2026, presents a hand-compiled list of <b class="n">200</b> Sanskrit stop words in simplified Latin transliteration. The words are sorted into <b class="k">15</b> grammatical categories and shown through interactive charts. Pronouns, demonstratives, quantifiers and adverbs make up most of the list, while categories such as articles and classifiers have no Sanskrit counterpart. The list is offered as a transparent starting point for preprocessing, teaching and later testing on real corpora.</p></section>
+
+<section id="objective" class="rv"><h2>Objective</h2><div class="two">
+<div class="card"><div class="num">01</div><h3>Compile</h3><p>Build a clean, duplicate-free Sanskrit stop-word list for use in text preprocessing.</p></div>
+<div class="card"><div class="num">02</div><h3>Structure</h3><p>Save it in <i>Sanskrit_stopwords.py</i>, named after the language and following the prescribed header pattern.</p></div>
+<div class="card"><div class="num">03</div><h3>Categorise</h3><p>Group every word by grammatical function and show the breakdown visually.</p></div>
+<div class="card"><div class="num">04</div><h3>Publish</h3><p>Upload the work to a GitHub repository and present it as a web page.</p></div></div></section>
+
+<section id="questions" class="rv"><h2>Research questions</h2><div class="two">
+<div class="card"><div class="num">RQ1</div><p>Which grammatical classes make up most of a Sanskrit stop-word list?</p></div>
+<div class="card"><div class="num">RQ2</div><p>How well do categories designed for English and Hindi, such as postpositions and classifiers, fit a highly inflected language like Sanskrit?</p></div>
+<div class="card"><div class="num">RQ3</div><p>What must be tested before the list can be trusted on real Sanskrit texts?</p></div></div></section>
+
+<section id="method" class="rv"><h2>Methodology</h2>
+<ol class="t"><li><b>Collect and clean.</b> The 200 words were gathered by hand and checked for duplicates with a script. None were found.</li>
+<li><b>Write the file.</b> The list was saved as <i>Sanskrit_stopwords.py</i>, with the required header: topic, author, short description, semester and affiliation.</li>
+<li><b>Categorise.</b> Each word was placed in one category according to its main grammatical role, for example <i>tat</i> (demonstrative) or <i>ca</i> (conjunction). Words with several roles went under the most common one. The script confirms that no word is missing or counted twice.</li>
+<li><b>Visualise.</b> A Python script counts each category and draws the charts shown below.</li>
+<li><b>Publish.</b> The files were uploaded to GitHub and this page was built for GitHub Pages.</li></ol>
+<p>The transliteration is simplified: long vowels are doubled (<i>aa, ii, uu</i>) and <i>sh</i> stands for both ś and ṣ.</p></section>
+
+<section id="list" class="rv"><h2>The list</h2>
+<input id="q" placeholder="Search a word…"> <button id="cp">Copy as Python list</button> <a href="Sanskrit_stopwords.py"><button>Download .py</button></a>
+<div class="chips" id="chips"></div><div id="ws"></div>
+<h3 style="margin-top:2rem">File header</h3><pre>"""
+============================================================
+Topic: Indic Language Stop Words for Natural Language Processing
+============================================================
+Author Name(s): Rupesh Rajak
+Semester: Monsoon Semester 2026
+Affiliation: Department of Humanities and Social Sciences, IIT (ISM) Dhanbad
+============================================================
+"""
+# 1. Sanskrit Stop Words
+# Language: Sanskrit
+Sanskrit_stopwords = ["aham", "vayam", "aavaam", ...]</pre></section>
+
+<section id="analysis" class="rv"><h2>Analysis</h2><p>Breakdown by category. Hover over the bars, the ring or the legend to explore.</p>
+<div class="plots"><div><svg id="donut" viewBox="0 0 200 200"></svg><div id="leg"></div></div><div id="bars"></div></div>
+<div class="plots"><img src="stopword_categories.png" alt="Bar chart of Sanskrit stop words by category" loading="lazy"><img src="stopword_donut.png" alt="Donut chart of Sanskrit stop words by category" loading="lazy"></div>
+<div class="card"><p id="obs" style="margin:0"></p></div></section>
+
+<section id="discussion" class="rv"><h2>Discussion</h2>
+<p>Sanskrit marks relations through case endings, so the list is dominated by inflected pronoun and demonstrative forms. One idea, such as “that”, therefore appears as many separate entries. Taken together, the four pronoun-type categories (personal, demonstrative, relative and interrogative) account for the largest share of the list. Adverbs and particles come next and behave much like function words in other languages. Two categories suggested for other Indic languages do not apply here. Sanskrit has no true postpositions, because its relations are carried by case endings and preverbs, and it has no classifiers. Both gaps are informative about how the language works.</p></section>
+
+<section id="limits" class="rv"><h2>Limitations</h2>
+<p>The list is a curated sample, not a complete inventory. It has not yet been tested on a Sanskrit corpus, so no claim is made about its effect on retrieval or classification. Sandhi, the joining of words in running text, can hide a stop word inside a longer string, and the Latin transliteration loses some distinctions. Stop-word choices also depend on the task, so the list should be adapted and not applied blindly.</p></section>
+
+<section id="future" class="rv"><h2>Future work</h2><div class="two">
+<div class="card"><h3>Devanagari forms</h3><p>Add the original script beside each transliterated word.</p></div>
+<div class="card"><h3>Corpus testing</h3><p>Measure word frequencies and the effect of removal on a Sanskrit corpus.</p></div>
+<div class="card"><h3>Lemmatisation</h3><p>Reduce inflected forms to base forms and compare list sizes.</p></div>
+<div class="card"><h3>More languages</h3><p>Extend the same method to Hindi and other Indic languages.</p></div></div></section>
+
+<section id="refs" class="rv"><h2>References</h2>
+<p>Creative Commons (n.d.) <i>Attribution-NonCommercial 4.0 International</i>. Available at: <a href="https://creativecommons.org/licenses/by-nc/4.0/">creativecommons.org/licenses/by-nc/4.0</a>.<br>
+Luhn, H. P. (1958) ‘The automatic creation of literature abstracts’, <i>IBM Journal of Research and Development</i>, 2(2), pp. 159–165.<br>
+Manning, C. D., Raghavan, P. and Schütze, H. (2008) <i>Introduction to Information Retrieval</i>. Cambridge: Cambridge University Press.</p>
+<h3 style="margin-top:1.6rem">Cite this project</h3>
+<select id="fmt"><option>APA 7</option><option>MLA 9</option><option>Chicago (author–date)</option><option>Chicago (notes)</option><option>Harvard</option><option>IEEE</option><option>BibTeX</option></select> <button id="cc">Copy citation</button><pre id="out"></pre></section>
+
+<section id="about" class="rv"><h2>About</h2><div class="two">
+<div class="card"><h3>Rupesh Rajak</h3><p><b>MA, Digital Humanities &amp; Social Sciences — IIT (ISM) Dhanbad</b></p>
+<p>Rupesh Rajak is currently pursuing an M.A. in Digital Humanities and Social Sciences at the Indian Institute of Technology (Indian School of Mines), Dhanbad (2025–2027). He graduated in History (Honours) from BBMKU. In the summer break of 2026 he spent six weeks on mining-community rehabilitation and CSR-related field activities. He also completed a Def-Space winter internship at the Bharat Space Education Research Center (December 2025–26).</p>
+<p><a href="https://about.me/simantanandi">Personal website</a> · <a href="mailto:25ma0009@iitism.ac.in">25ma0009@iitism.ac.in</a></p></div>
+<div class="card"><h3>Project supervision</h3><p><a href="https://shanmugapriya.com/">Shanmugapriya T.</a><br><a href="https://linktr.ee/sourav.dh.litcult">Sourav Ghosh</a></p><p style="color:var(--m);font-size:.9rem">Monsoon Semester 2026<br>Department of Humanities and Social Sciences</p></div></div></section>
+
+<footer>© 2026 Rupesh Rajak. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0 International</a>.</footer>
+<script src="data.js"></script>
+<script>
+const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s),D=window.DATA,E=Object.entries(D).sort((a,b)=>b[1].length-a[1].length),N=E.reduce((a,[,w])=>a+w.length,0),mx=E[0][1].length,col=i=>`hsl(${(i*24+20)%360} 42% ${44+(i%2)*8}%)`;
+$$('.n').forEach(e=>{e.dataset.t=N;if(!e.classList.contains('cnt'))e.textContent=N});$$('.k').forEach(e=>{e.dataset.t=E.length;if(!e.classList.contains('cnt'))e.textContent=E.length});
+addEventListener('scroll',()=>$('#pg').style.width=100*scrollY/(document.body.scrollHeight-innerHeight)+'%');
+// moving light
+const nt=$('#night');let tx=200,ty=40,x=tx,y=ty,t=0,mv=0;
+nt.addEventListener('pointermove',e=>{const r=nt.getBoundingClientRect();tx=e.clientX-r.left;ty=e.clientY-r.top;mv=1});nt.addEventListener('pointerleave',()=>mv=0);
+(function f(){t+=.012;if(!mv){const r=nt.getBoundingClientRect();tx=r.width*(.5+.42*Math.sin(t*1.2));ty=r.height*(.5+.3*Math.sin(t*.8+1))}
+x+=(tx-x)*.1;y+=(ty-y)*.1;nt.style.setProperty('--x',x+'px');nt.style.setProperty('--y',y+'px');requestAnimationFrame(f)})();
+for(let i=0;i<10;i++){const s=document.createElement('span');s.className='g';s.textContent='अआइउकखगचतनपमयरलवशसह'[i*2];s.style.cssText=`left:${Math.random()*92}%;top:${Math.random()*85}%;animation-delay:${-i*1.4}s`;$('#hero').appendChild(s)}
+// bars + donut
+$('#bars').innerHTML=E.map(([k,w],i)=>`<div class="bar" data-i="${i}" title="${w.slice(0,8).join(', ')}…"><span>${k}</span><i data-w="${w.length/mx*100}" style="background:${col(i)}"></i><b>${w.length}</b></div>`).join('');
+const C0=2*Math.PI*80;let ac=0;
+$('#donut').innerHTML=E.map(([k,w],i)=>{const l=w.length/N*C0,s=`<circle data-i="${i}" r="80" cx="100" cy="100" fill="none" stroke="${col(i)}" stroke-width="30" stroke-dasharray="0 ${C0}" data-d="${l-1.5} ${C0-l+1.5}" stroke-dashoffset="${-ac}" transform="rotate(-90 100 100)"/>`;ac+=l;return s}).join('')+`<text id="dc" x="100" y="102" text-anchor="middle" font-family="Cormorant Garamond" font-weight="700" font-size="34" fill="#9a6b2f">${N}</text><text id="dl" x="100" y="120" text-anchor="middle" font-size="7.5" fill="#7a6e5d">stop words</text>`;
+$('#leg').innerHTML=E.map(([k],i)=>`<span data-i="${i}"><i style="background:${col(i)}"></i>${k}</span>`).join('');
+function hi(i){$$('#donut circle').forEach(c=>c.style.opacity=i<0||+c.dataset.i===i?1:.25);$$('.bar').forEach(b=>b.style.opacity=i<0||+b.dataset.i===i?1:.35);$('#dc').textContent=i<0?N:E[i][1].length;$('#dl').textContent=i<0?'stop words':E[i][0]}
+$$('#donut circle,#leg span,.bar').forEach(e=>{e.onmouseenter=()=>hi(+e.dataset.i);e.onmouseleave=()=>hi(-1)});
+const pr=['Personal Pronouns & Possessives','Demonstratives','Relative Pronouns','Interrogatives'],ps=E.filter(([k])=>pr.includes(k)).reduce((a,[,w])=>a+w.length,0),sm=E.filter(([,w])=>w.length<=4).map(e=>e[0]);
+$('#obs').textContent=`${E[0][0]} form the largest group, with ${E[0][1].length} of ${N} words (${(100*E[0][1].length/N).toFixed(1)} per cent). The four pronoun-type categories together hold ${ps} words (${(100*ps/N).toFixed(1)} per cent). ${sm.length} categories have four words or fewer (${sm.join(', ')}), which shows how small the closed classes of connectives, negation and interjections are.`;
+// reveal
+function cnt(e){const T=+e.dataset.t;let v=0;const s=setInterval(()=>{v+=Math.ceil(T/40);if(v>=T){v=T;clearInterval(s)}e.textContent=v},35)}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');e.target.querySelectorAll('.bar i').forEach(b=>b.style.width=b.dataset.w+'%');e.target.querySelectorAll('#donut circle').forEach(c=>c.setAttribute('stroke-dasharray',c.dataset.d));io.unobserve(e.target)}}),{threshold:.15});
+$$('.rv').forEach(s=>io.observe(s));$$('.cnt').forEach(cnt);
+// word explorer
+let cat='All';const ch=$('#chips');
+['All',...E.map(e=>e[0])].forEach(c=>{const b=document.createElement('button');b.textContent=c;b.onclick=()=>{cat=c;[...ch.children].forEach(x=>x.classList.toggle('a',x===b));draw()};if(c==='All')b.className='a';ch.appendChild(b)});
+function draw(){const q=$('#q').value.toLowerCase();$('#ws').innerHTML=E.flatMap(([k,w],i)=>w.map(v=>[k,v,i])).filter(([k,v])=>(cat==='All'||k===cat)&&v.includes(q)).map(([k,v,i])=>`<span class="w" title="${k}" style="border-color:${col(i)}" onmouseenter="this.style.background='${col(i)}'" onmouseleave="this.style.background=''">${v}</span>`).join('')}
+$('#q').oninput=draw;draw();
+$('#cp').onclick=e=>{navigator.clipboard.writeText('Sanskrit_stopwords = ['+E.flatMap(([,w])=>w).map(w=>`"${w}"`).join(', ')+']');e.target.textContent='Copied';setTimeout(()=>e.target.textContent='Copy as Python list',1500)};
+// citation machine
+const T='Indic Stop Words for Natural Language Processing: A Sanskrit Stop-Word List',I='Indian Institute of Technology (Indian School of Mines) Dhanbad',U=location.protocol.startsWith('http')?location.href.split('#')[0]:'https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/';
+const d=new Date(),dm=d.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}),ml=d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+const F={'APA 7':`Rajak, R. (2026). <i>${T}</i> [Project website]. ${I}. ${U}`,'MLA 9':`Rajak, Rupesh. <i>${T}</i>. ${I}, 2026, ${U}. Accessed ${ml}.`,'Chicago (author–date)':`Rajak, Rupesh. 2026. “${T}.” Project website. ${I}. ${U}.`,'Chicago (notes)':`Rupesh Rajak, “${T},” project website, ${I}, 2026, ${U}.`,'Harvard':`Rajak, R. (2026) <i>${T}</i>. ${I}. Available at: ${U} (Accessed: ${dm}).`,'IEEE':`R. Rajak, “${T},” ${I}, 2026. [Online]. Available: ${U}`,'BibTeX':`@misc{rajak2026sanskrit,\n  author = {Rajak, Rupesh},\n  title = {${T}},\n  year = {2026},\n  howpublished = {\\url{${U}}},\n  note = {${I}. Licensed under CC BY-NC 4.0}\n}`};
+const sh=()=>$('#out').innerHTML=F[$('#fmt').value];$('#fmt').onchange=sh;sh();
+$('#cc').onclick=e=>{navigator.clipboard.writeText($('#out').innerText);e.target.textContent='Copied';setTimeout(()=>e.target.textContent='Copy citation',1500)};
+</script></body></html>
